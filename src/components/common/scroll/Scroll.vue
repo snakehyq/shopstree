@@ -46,13 +46,13 @@ export default {
     methods: {
         // 封装scrollTo
         scrollTo(x, y, time = 300) {
-            this.scroll &&this.scroll.scrollTo(x, y, time)
+            this.scroll && this.scroll.scrollTo(x, y, time)
         },
         refresh() {
             this.scroll && this.scroll.refresh()
         },
         getScrollY() {
-            return this.scroll?this.scroll.y:0
+            return this.scroll? this.scroll.y: 0
         }
     }
 }

@@ -23,13 +23,6 @@ export default {
             default: ''
         }
     },
-    data(){
-        return {
-          active: {
-              color: 'blue'
-          }
-        }
-    },
     computed: {
         isActive() {
             return this.$route.path.indexOf(this.path) !== -1

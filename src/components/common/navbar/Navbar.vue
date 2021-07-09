@@ -1,5 +1,5 @@
 <template>
-    <div id="navber">
+    <div id="navber" :style="{'background': bgColor}">
         <div class="nav-left"><slot name="nav-left"></slot></div>
         <div class="nav-center"><slot name="nav-center"></slot></div>
         <div class="nav-right"><slot name="nav-right"></slot></div>
@@ -8,7 +8,13 @@
 
 <script>
 export default {
-    name: "navber"
+    name: "navber",
+    props: {
+        bgColor: {
+            type: String,
+            default: '#fff'
+        }
+    }
 }
 </script>
 

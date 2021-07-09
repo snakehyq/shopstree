@@ -1,6 +1,6 @@
 <template>
     <div id="home">
-        <Navbar  class="home-navbar"> <div slot="nav-center">购物街</div></Navbar>
+        <Navbar bgColor="#ff8198"> <div slot="nav-center">购物街</div></Navbar>
         <TabController :titles="titles"
                         class="tab"
                         v-show="isShowTabController"
@@ -11,9 +11,9 @@
             <HomeRecommend :recommend="recommend"></HomeRecommend>
             <HomePopular></HomePopular>
             <TabController :titles="titles" @tabClick="tabClick" ref="IntabContro"></TabController>
-            <ShopList :goodsItem="goodsTypeList"></ShopList>
+            <ShopList :goodsList="goodsTypeList"></ShopList>
         </Scroll>
-        <TopBack v-show="showTopBack" @click.native="backToTop"></TopBack>
+        <TopBack v-show="isShowBackTop" @click.native="backClick"></TopBack>
     </div>
 </template>
 
@@ -29,7 +29,7 @@ import ShopList from 'components/content/shopList/ShopList'
 import Scroll from 'components/common/scroll/Scroll'
 import TopBack from 'components/content/topBack/TopBack'
 
-import { distance } from 'common/const.js'
+import { topBackMixin } from 'common/mixin'
 
 // 导入home的请求
 import { getHomeData, getHomeShops } from 'network/home'
@@ -42,9 +42,9 @@ export default {
         Navbar,
         TabController,
         ShopList,
-        Scroll,
-        TopBack
+        Scroll
     },
+    mixins: [topBackMixin],
     data() {
         return {
             //轮播图数据
@@ -61,8 +61,6 @@ export default {
             },
             // 保存goods的键值
             goodsTypeKey: 'pop',
-            // topBack的显示隐藏
-            showTopBack: false,
             // 保存tabController的offsetTop的值
             tabOffTop: 0,
             // 控制内部的tabController的显示和隐藏
@@ -115,12 +113,9 @@ export default {
             this.$refs.outTabContro.currentIndex = index
         },
         backTop(position) {
-            this.showTopBack = -position.y > distance
-            this.isShowTabController = -position.y >= this.tabOffTop
-        },
-        // 回到顶部
-        backToTop(){
-            this.$refs.scroll.scrollTo(0,0,300)
+            const positionY = -position.y
+            this.isShowTabController = positionY >= this.tabOffTop
+            this.backShowTop(positionY)
         },
         //上拉加载商品数据
         upLoadMore() {

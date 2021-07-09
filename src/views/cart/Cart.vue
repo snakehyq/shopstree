@@ -1,13 +1,21 @@
 <template>
-    <div id="cart">cart</div>
+    <div id="cart">
+        <CartNav></CartNav>
+    </div>
 </template>
 
 <script>
+import CartNav from './childComponents/CartNav'
 export default {
-    name: "cart"
+    name: "cart",
+    components: {
+        CartNav
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-
+#cart {
+    height: 100vh;
+}
 </style>

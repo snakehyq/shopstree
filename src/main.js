@@ -5,9 +5,12 @@ import App from './App.vue'
 import 'assets/css/base.scss'
 // 导入路由router
 import router from './router'
+// 导入store
+import store from './store'
 Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
