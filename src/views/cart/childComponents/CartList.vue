@@ -9,7 +9,7 @@
 <script>
 import CartItem from './CartItem.vue'
 
-import Scroll from "components/common/Scroll/Scroll"
+import Scroll from "components/common/scroll/Scroll"
 
 import { mapGetters } from 'vuex'
 export default {
@@ -26,10 +26,9 @@ export default {
 
 <style lang="scss" scoped>
 .cartList {
-    height: calc(100% - 44px - 58px - 44px);
+    height: calc(100vh - 44px - 49px - 40px);
     .wrapper {
         height: 100%;
-        overflow: hidden;
     }
 }
 </style>

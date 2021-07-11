@@ -137,7 +137,9 @@ export default {
             product.desc = this.goodInfo.desc
             product.price = this.goodInfo.nowPrice
             product.iid = this.iid
-            this.$store.dispatch('addCart',product)
+            this.$store.dispatch('addCart',product).then( res => {
+                this.$Toast.show(res,2000)
+            })
             
         }
     }
